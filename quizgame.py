@@ -22,8 +22,10 @@ def main():
                     print(f"{i+1}: {item.name}")
         else:
             print("Try again!")
+    input()
 
 def quiztime(quizName):
+    correct_answers = 0
     order_list = [i for i in range(len(quizName.questions))]
     random.shuffle(order_list)
     #print(order_list)
@@ -41,8 +43,12 @@ def quiztime(quizName):
             print("Invalid Guess")
         elif quizName.answers[o][answer_list[userAnswer-1]] == quizName.answers[o][quizName.correct[o]]:
             print("Correct!")
+            correct_answers += 1
         else:
             print(f"Incorrect, the correct answer is {quizName.answers[o][quizName.correct[o]]}")
+    percent_correct = (correct_answers/len(quizName.questions))*100
+    percent_correct = round(percent_correct,2)
+    print(f"You got {percent_correct}% correct! That's {correct_answers} correct answer(s)!")
 
 if __name__=="__main__":
     main()
